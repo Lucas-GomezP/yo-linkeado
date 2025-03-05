@@ -23,11 +23,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen justify-between`}
       >
-        {children}
+        <div>
+          <header className="bg-slate-200 p-4 rounded-full m-2 sticky top-2">
+            <h1 className="text-xl font-bold">Yo Linkeado</h1>
+          </header>
+          <main>
+            {children}
+          </main>
+        </div>
+        <footer className="">Footer</footer>
       </body>
     </html>
   );
