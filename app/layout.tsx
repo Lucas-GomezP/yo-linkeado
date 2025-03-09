@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,17 +26,31 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen justify-between`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased
+          flex flex-col min-h-screen justify-between
+          
+        `}
       >
-        <div>
-          <header className="bg-slate-200 p-4 rounded-full m-2 sticky top-2">
-            <h1 className="text-xl font-bold">Yo Linkeado</h1>
-          </header>
-          <main>
-            {children}
-          </main>
+        <div className="min-h-screen grid-template">
+            <header className="bg-slate-200 p-4 sticky top-0 z-10 [grid-area:header]">
+              <div className="md:max-w-3xl mx-auto flex justify-between items-center">
+                <Link href={"/"} className="text-xl font-bold mt-2">Yo Linkeado</Link>
+                <div className="flex gap-2">
+                  <Link href={"/profiles"} className="bg-slate-800 text-white active:bg-slate-600 active:scale-95 transition-all px-4 rounded-full py-1">Ver perfiles</Link>
+                  <Link href={"/create"} className="bg-slate-800 text-white active:bg-slate-600 active:scale-95 transition-all px-4 rounded-full py-1">Crear</Link>
+                </div>
+              </div>
+            </header>
+            <main className="bg-slate-200 [grid-area:main]">
+              {children}
+            </main>
+          <footer className="bg-slate-200 p-4 [grid-area:footer]">
+            <div className="md:max-w-3xl mx-auto flex flex-col items-center">
+              <p><Link href={"https://github.com/Lucas-GomezP/yo-linkeado"} target="_blank" className="underline text-slate-800 font-semibold">Repositorio del proyecto</Link> 🐱‍👤</p>
+              <p>Desarrollador: <Link href={"https://github.com/Lucas-GomezP"} target="_blank" className="underline text-slate-800 font-semibold">Lucas Gomez Peña</Link> 👨‍💻</p>
+            </div>
+          </footer>
         </div>
-        <footer className="">Footer</footer>
       </body>
     </html>
   );

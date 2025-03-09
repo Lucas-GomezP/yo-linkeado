@@ -1,0 +1,24 @@
+.claro {
+  background-color: white;
+  color: black;
+}
+
+.claro .link-project {
+  background-color: black;
+  color: white;
+}
+
+.claro .link-project:active {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.oscuro {
+  background-color: black;
+  color: white;
+}
+
+.oscuro .link-project {
+  background-color: white;
+  color: black;
+}

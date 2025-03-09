@@ -27,16 +27,33 @@ export default function Profiles() {
   }, [search]);
 
   return (
-    <div>
-      <h1>Profiles</h1>
-      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+    <div className="h-full bg-white rounded-4xl">
+      <div className=" md:w-2xl mx-auto">
+      <label
+        htmlFor="search"
+        className="flex flex-col p-2 sticky top-20 bg-slate-200 rounded-full px-6 mb-2 mx-2"
+      >
+        <h2 className="text-lg font-semibold text-center">Buscar perfiles</h2>
+        <input
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Nombre de usuario"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border-2 rounded-full p-2 bg-white text-center"
+        />
+      </label>
       {
         users ? (
           <ListUsers users={users} />
         ) : (
-          <p>Loading</p>
+          <div className="flex justify-center items-center h-full mt-10">
+            <div className="size-10 border-4 border-violet-700 border-t-transparent rounded-full animate-spin ease-in-out" />
+          </div>
         )
       }
+      </div>
     </div>
   );
 }

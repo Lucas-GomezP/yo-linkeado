@@ -26,6 +26,7 @@ export type DataUser = {
   "Threads (opcional)": string;
   "Spotify (opcional)": string;
   "Resumen": string;
+  "Estilo de colores": string;
 }
 
 export async function getData() {

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getDataByUserNameMail } from "../api/api";
 import SocialMediaSection from "./components/social-media-links";
 import ProjectsSection from "./components/project-container";
+import "./colors.css"
 
 type Props = {
   params: {
@@ -39,24 +40,30 @@ export default async function Profile({ params: {profile} }: Props) {
     {title: actualUser["Título del PROYECTO Nº5"], link: actualUser["Link del PROYECTO Nº5"]},
   ]
 
+  const colors = actualUser["Estilo de colores"].toLowerCase();
+
+  console.log("colors",colors);
+
   return (
-    <div className="max-w-screen">
-      <header className="flex flex-col gap-4 mt-10 mb-10">
-        <h1 className="text-4xl text-center">{actualUser["Nombre de usuario"]}</h1>
+    <div className={`h-full max-w-screen ${colors} rounded-4xl py-10 flex flex-col justify-center`}>
+      <div className="md:w-2xl mx-auto">
+        <header className="flex flex-col gap-4 mb-10">
+          <h1 className="text-4xl text-center">{actualUser["Nombre de usuario"]}</h1>
+          {
+            actualUser["Resumen"] && (
+              <p className="text-center">{actualUser["Resumen"]}</p>
+            )
+          }
+        </header>
         {
-          actualUser["Resumen"] && (
-            <p className="text-center">{actualUser["Resumen"]}</p>
+          socialLinks && (
+            <div className="mx-10 mb-10">
+              <SocialMediaSection links={socialLinks} />
+            </div>
           )
         }
-      </header>
-      {
-        socialLinks && (
-          <div className="mx-10 mb-10">
-            <SocialMediaSection links={socialLinks} />
-          </div>
-        )
-      }
-      <ProjectsSection projects={proyects} />
+        <ProjectsSection projects={proyects} />
+      </div>
     </div>
   );
 }
